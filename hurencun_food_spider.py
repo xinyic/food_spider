@@ -20,9 +20,6 @@ class FoodSpider(scrapy.Spider):
             }
 
         next_page = response.css("a.next::attr('href')").extract_first()
-        print("=" * 80)
-        print(next_page)
-        print("=" * 80)
         next_page = response.urljoin(next_page)
         yield scrapy.Request(next_page, callback=self.parse)
 
